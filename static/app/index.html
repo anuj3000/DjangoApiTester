@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link 
+        rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-DfwD6F5r8gMhR8JrX82r1bcshCKt9vZlMhb3M3h6OeiPavPEV0Nok0J8HjB+JmWZ" 
+        crossorigin="anonymous">
+</head>
+<body>
+    <div id="root" class="container mt-5">
+        <h1 class="text-center">API Tester</h1>
+        <form method="post" action="{% url 'api_tester' %}" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="url">API URL:</label>
+                <input type="url" id="url" name="url" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="method">HTTP Method:</label>
+                <select id="method" name="method" class="form-control">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="DELETE">DELETE</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="headers">Headers (JSON):</label>
+                <textarea id="headers" name="headers" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="body">Body (JSON):</label>
+                <textarea id="body" name="body" rows="4" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Send Request</button>
+        </form>
+
+        {% if response %}
+            <div class="mt-5">
+                <h2 class="text-center">Response</h2>
+                <pre class="bg-light p-3 border rounded">{{ response }}</pre>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- ReactJS CDN -->
+    <script 
+        src="https://unpkg.com/react@17/umd/react.development.js" 
+        crossorigin></script>
+    <script 
+        src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" 
+        crossorigin></script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script 
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+        crossorigin="anonymous"></script>
+    <script 
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" 
+        integrity="sha384-J6qa4849blE2+poTSoU3SMrjTyzqFXk8P1rZ5/2zgDdGMc3iAi60tEK4tGJ7SkBj" 
+        crossorigin="anonymous"></script>
+    <script 
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" 
+        integrity="sha384-QWoJ3l+XtuNhz8ZsG5b7q0w5ylK2rT2+Ejw2lS1z2srn9zJgWbOfWnF7pCJ9xZTW" 
+        crossorigin="anonymous"></script>
+</body>
+</html>
